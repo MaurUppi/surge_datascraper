@@ -17,6 +17,13 @@ Get recent data by Surge HTTP-API and set up the Grafana dashboard.
 6. import `panels/dashboard.json` and `panels/logs.json` to Grafana
 
 
-#### data source setting example
+#### InfluxDB TOKEN setting example
+
+![screenshot](./screenshot/TOKEN.jpeg)
+
+
+#### Grafana data source setting example
 
 ![screenshot](./screenshot/datasource.jpeg)
+
+
