@@ -1,0 +1,22 @@
+{
+  "URL": "string",
+  "completedDate": "number",
+  "startDate": "number",
+  "id": "number",
+  "sourceAddress": "string",
+  "remoteAddress": "string",
+  "remoteHost": "string",
+  "localAddress": "string",
+  "remoteClientPhysicalAddress": "string",
+  "inMaxSpeed": "number",
+  "outMaxSpeed": "number",
+  "interface": "string",
+  "status": "string",
+  "policyName": "string",
+  "rule": "string",
+  "requestHeader": "string",
+  "streamHasResponseBody": "number",
+  "timingRecords.DNS Lookup": "number",
+  "timingRecords.Rule Evaluating": "number",
+  "timingRecords.Establishing TCP Connection": "number"
+}

@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  surge_scraper:
+    build: .
+    depends_on:
+      - influxdb
+      - grafana
+    container_name: Surge_scraper
+
+  influxdb:
+    image: influxdb:2.7.4-alpine
+    container_name: Influxdb_v2
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    environment: 
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=myuser # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_PASSWORD=mypassword # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_ORG=myorg # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_BUCKET=mybucket # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_RETENTION=1y # 1y is the data will retented one year. 
+    ports:
+      - "8086:8086"
+    restart: unless-stopped
+
+  grafana-oss:
+    image: grafana/grafana-oss:latest
+    container_name: Grafana-oss
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin # Change to your preferred value
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Change to your preferred value
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+
+volumes:
+  influxdb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /path/to/your/influxdb_data
+      o: bind
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /path/to/your/grafana_data
+      o: bind
+
