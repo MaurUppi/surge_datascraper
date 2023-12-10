@@ -33,6 +33,137 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"status\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"statusCounts\")\r\n",
+          "refId": "A"
+        }
+      ],
+      "title": "状态分布",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cr1JeQNIk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"policyNameCounts\")\r\n",
+          "refId": "A"
+        }
+      ],
+      "title": "规则应用情况",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cr1JeQNIk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
             "axisBorderShow": false,
             "axisCenteredZero": true,
             "axisColorMode": "series",
@@ -185,10 +316,10 @@
         ]
       },
       "gridPos": {
-        "h": 11,
-        "w": 12,
+        "h": 12,
+        "w": 8,
         "x": 0,
-        "y": 0
+        "y": 11
       },
       "id": 1,
       "options": {
@@ -354,10 +485,10 @@
         ]
       },
       "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 12,
+        "w": 8,
+        "x": 8,
+        "y": 11
       },
       "id": 4,
       "options": {
@@ -402,9 +533,137 @@
       "title": "最大带宽",
       "transparent": true,
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cr1JeQNIk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 10,
+        "x": 0,
+        "y": 23
+      },
+      "id": 8,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"remoteHost\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"remoteHostCounts\")\r\n",
+          "refId": "A"
+        }
+      ],
+      "title": "访问地址情况",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cr1JeQNIk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 6,
+        "x": 10,
+        "y": 23
+      },
+      "id": 6,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^_value$/",
+          "values": true
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"sourceAddress\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"sourceAddressCounts\")\r\n",
+          "refId": "A"
+        }
+      ],
+      "title": "客户端IP访问情况",
+      "transparent": true,
+      "type": "bargauge"
     }
   ],
-  "refresh": "1m",
+  "refresh": "5m",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
@@ -418,6 +677,6 @@
   "timezone": "Asia/Shanghai",
   "title": "Surge recent",
   "uid": "a2074dbe-7173-456d-94e3-df32d2f7813f",
-  "version": 9,
+  "version": 19,
   "weekStart": ""
 }
