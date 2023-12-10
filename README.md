@@ -15,3 +15,8 @@ An example of a Surge HTTP-API.
 4. start `docker-compose up -d`
 5. setup Grafana (add datasource)
 6. import `panels/dashboard.json` and `panels/logs.json` to Grafana
+
+
+#### datasource example
+
+![screenshot](./screenshot/datasource.jpeg)
