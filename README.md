@@ -17,6 +17,6 @@ An example of a Surge HTTP-API.
 6. import `panels/dashboard.json` and `panels/logs.json` to Grafana
 
 
-#### datasource example
+#### datasource setting example
 
 ![screenshot](./screenshot/datasource.jpeg)
