@@ -4,7 +4,7 @@ An example of a Surge HTTP-API.
 
 ### Screenshot
 
-![screenshot](./screenshot/screenshot.png)
+![screenshot](./screenshot/screenshot.jpeg)
 
 ### How to use
 
