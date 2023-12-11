@@ -2,9 +2,6 @@
 
 Get recent data by Surge HTTP-API and set up the Grafana dashboard. 
 
-### Screenshot
-
-![screenshot](./screenshot/screenshot.jpg)
 
 ### How to use
 
@@ -15,6 +12,11 @@ Get recent data by Surge HTTP-API and set up the Grafana dashboard.
 4. start `docker-compose up -d`
 5. setup Grafana (add datasource)
 6. import `panels/dashboard.json` and `panels/logs.json` to Grafana
+
+
+### Dashboard Screenshot
+
+![screenshot](./screenshot/screenshot.jpg)
 
 
 #### InfluxDB TOKEN setting example
