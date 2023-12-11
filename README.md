@@ -4,7 +4,7 @@ Get recent data by Surge HTTP-API and set up the Grafana dashboard.
 
 ### Screenshot
 
-![screenshot](./screenshot/screenshot.jpeg)
+![screenshot](./screenshot/screenshot.jpg)
 
 ### How to use
 
