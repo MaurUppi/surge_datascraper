@@ -19,8 +19,8 @@ services:
       - DOCKER_INFLUXDB_INIT_USERNAME=my-init-user # Change to your preferred value. 
       - DOCKER_INFLUXDB_INIT_PASSWORD=my-init-password # Change to your preferred value. 8 digs at least. 
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-init-token # could be the same as password. API token to associate with the admin user. If not set, InfluxDB automatically generates a token
-      - DOCKER_INFLUXDB_INIT_ORG=my-init-org # Change to your preferred value. 
-      - DOCKER_INFLUXDB_INIT_BUCKET=my-init-bucket # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_ORG=homelab # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_BUCKET=surge # Change to your preferred value. 
       - DOCKER_INFLUXDB_INIT_RETENTION=1y # 1y is the data that will be retent one year. Duration for the initial bucket’s retention period. If not set, the initial bucket will retain data forever.
     ports:
       - "8086:8086"
