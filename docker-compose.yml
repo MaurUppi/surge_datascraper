@@ -15,11 +15,12 @@ services:
       - influxdb_data:/var/lib/influxdb2
     environment: 
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=myuser # Change to your preferred value. 
-      - DOCKER_INFLUXDB_INIT_PASSWORD=mypassword # Change to your preferred value. 
-      - DOCKER_INFLUXDB_INIT_ORG=myorg # Change to your preferred value. 
-      - DOCKER_INFLUXDB_INIT_BUCKET=mybucket # Change to your preferred value. 
-      - DOCKER_INFLUXDB_INIT_RETENTION=1y # 1y is the data will retented one year. 
+      - DOCKER_INFLUXDB_INIT_USERNAME=my-init-user # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_PASSWORD=my-init-password # Change to your preferred value. 8 digs at least. 
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-init-token # could be the same as password. 
+      - DOCKER_INFLUXDB_INIT_ORG=my-init-org # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_BUCKET=my-init-bucket # Change to your preferred value. 
+      - DOCKER_INFLUXDB_INIT_RETENTION=1y # 1y is the data that will be retent one year. 
     ports:
       - "8086:8086"
     restart: unless-stopped
