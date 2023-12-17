@@ -23,651 +23,857 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "unit": "none"
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 11,
-        "w": 8,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 7,
-      "options": {
-        "displayLabels": [
-          "name"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true,
-          "values": [
-            "percent"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
+      "id": 9,
+      "panels": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "cr1JeQNIk"
           },
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"status\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"statusCounts\")\r\n",
-          "refId": "A"
-        }
-      ],
-      "title": "状态分布",
-      "transparent": true,
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
               },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 8,
-        "y": 0
-      },
-      "id": 5,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "cr1JeQNIk"
+              "custom": {
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              },
+              "fieldMinMax": false,
+              "mappings": [],
+              "unit": "none"
+            },
+            "overrides": []
           },
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"policyNameCounts\")\r\n",
-          "refId": "A"
-        }
-      ],
-      "title": "规则应用情况",
-      "transparent": true,
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+          "gridPos": {
+            "h": 11,
+            "w": 8,
+            "x": 0,
+            "y": 1
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": true,
-            "axisColorMode": "series",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "id": 7,
+          "options": {
+            "displayLabels": [
+              "name"
+            ],
+            "legend": {
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true,
+              "values": [
+                "percent"
+              ]
             },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineStyle": {
-              "fill": "solid"
+            "pieType": "pie",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": true
             },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
             }
           },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
               },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "timingRecordsRuleEvaluating"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "规则匹配"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "timingRecordsDNSLookup"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "DNS查询"
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "timingRecordsEstablishingTCPConnection"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "TCP建立时间"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "TCP建立时间"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "规则匹配"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "DNS查询"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 8,
-        "x": 0,
-        "y": 11
-      },
-      "id": 1,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "mean",
-            "lastNotNull"
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"status\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"statusCounts\")\r\n",
+              "refId": "A"
+            }
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "cr1JeQNIk"
-          },
-          "hide": false,
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsRuleEvaluating\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsRuleEvaluating: r._value\r\n    }))\r\n",
-          "refId": "A"
+          "title": "状态分布",
+          "transparent": true,
+          "type": "piechart"
         },
         {
           "datasource": {
             "type": "influxdb",
             "uid": "cr1JeQNIk"
           },
-          "hide": true,
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsDNSLookup\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsDNSLookup: r._value\r\n    }))\r\n",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "cr1JeQNIk"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
           },
-          "hide": false,
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsEstablishingTCPConnection\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsEstablishingTCPConnection: r._value\r\n    }))\r\n",
-          "refId": "C"
+          "gridPos": {
+            "h": 11,
+            "w": 8,
+            "x": 8,
+            "y": 1
+          },
+          "id": 5,
+          "options": {
+            "displayMode": "basic",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": true
+            },
+            "showUnfilled": true,
+            "valueMode": "color"
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"policyNameCounts\")\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "规则应用总览",
+          "transparent": true,
+          "type": "bargauge"
         }
       ],
-      "title": "处理耗时",
-      "transparent": true,
-      "type": "timeseries"
+      "title": "常规信息",
+      "type": "row"
     },
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+      "id": 10,
+      "panels": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": true,
-            "axisColorMode": "series",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": true,
+                "axisColorMode": "series",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "fieldMinMax": false,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "timingRecordsRuleEvaluating"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "规则匹配"
+                  },
+                  {
+                    "id": "custom.axisPlacement",
+                    "value": "right"
+                  },
+                  {
+                    "id": "custom.transform",
+                    "value": "negative-Y"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "timingRecordsDNSLookup"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "DNS查询"
+                  },
+                  {
+                    "id": "custom.axisPlacement",
+                    "value": "right"
+                  },
+                  {
+                    "id": "custom.transform",
+                    "value": "negative-Y"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "timingRecordsEstablishingTCPConnection"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "TCP建立时间"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "TCP建立时间"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "red",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "规则匹配"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "green",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "DNS查询"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 9,
+            "x": 0,
+            "y": 2
+          },
+          "id": 1,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
               },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "Bps"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "timingRecordsRuleEvaluating"
+              "hide": false,
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsRuleEvaluating\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsRuleEvaluating: r._value\r\n    }))\r\n",
+              "refId": "A"
             },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "规则匹配"
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
               },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "inMaxSpeed"
+              "hide": true,
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsDNSLookup\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsDNSLookup: r._value\r\n    }))\r\n",
+              "refId": "B"
             },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "最大下载速度"
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
               },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "outMaxSpeed"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "最大上传速度"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 8,
-        "x": 8,
-        "y": 11
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max",
-            "mean",
-            "lastNotNull"
+              "hide": false,
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"timingRecordsEstablishingTCPConnection\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      timingRecordsEstablishingTCPConnection: r._value\r\n    }))\r\n",
+              "refId": "C"
+            }
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "timezone": [
-          "browser"
-        ],
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "cr1JeQNIk"
-          },
-          "hide": false,
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"inMaxSpeed\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      inMaxSpeed: r._value\r\n    }))\r\n",
-          "refId": "A"
+          "title": "处理耗时",
+          "transparent": true,
+          "type": "timeseries"
         },
         {
           "datasource": {
             "type": "influxdb",
             "uid": "cr1JeQNIk"
           },
-          "hide": false,
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"outMaxSpeed\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      outMaxSpeed: r._value\r\n    }))\r\n",
-          "refId": "C"
-        }
-      ],
-      "title": "最大带宽",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": true,
+                "axisColorMode": "series",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "bars",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
+            },
+            "overrides": [
               {
-                "color": "green",
-                "value": null
+                "matcher": {
+                  "id": "byName",
+                  "options": "timingRecordsRuleEvaluating"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "规则匹配"
+                  },
+                  {
+                    "id": "custom.axisPlacement",
+                    "value": "right"
+                  },
+                  {
+                    "id": "custom.transform",
+                    "value": "negative-Y"
+                  }
+                ]
               },
               {
-                "color": "red",
-                "value": 80
+                "matcher": {
+                  "id": "byName",
+                  "options": "inMaxSpeed"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "最大下载速度"
+                  },
+                  {
+                    "id": "custom.axisPlacement",
+                    "value": "right"
+                  },
+                  {
+                    "id": "custom.transform",
+                    "value": "negative-Y"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "outMaxSpeed"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "最大上传速度"
+                  }
+                ]
               }
             ]
-          }
-        },
-        "overrides": []
-      },
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 9,
+            "x": 9,
+            "y": 2
+          },
+          "id": 4,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "timezone": [
+              "browser"
+            ],
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "hide": false,
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"inMaxSpeed\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      inMaxSpeed: r._value\r\n    }))\r\n",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "hide": false,
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\")\r\n  |> filter(fn: (r) => r._field == \"outMaxSpeed\")\r\n  |> group(columns: [\"id\"])\r\n  |> first()\r\n  |> map(fn: (r) => ({\r\n      _time: r._time,\r\n      //value: r._value,\r\n      outMaxSpeed: r._value\r\n    }))\r\n",
+              "refId": "C"
+            }
+          ],
+          "title": "最大带宽",
+          "transparent": true,
+          "type": "timeseries"
+        }
+      ],
+      "title": "性能信息",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
       "gridPos": {
-        "h": 16,
-        "w": 10,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 23
+        "y": 2
       },
-      "id": 8,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
+      "id": 11,
+      "panels": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "cr1JeQNIk"
           },
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"remoteHost\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"remoteHostCounts\")\r\n",
-          "refId": "A"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 16,
+            "w": 8,
+            "x": 0,
+            "y": 3
+          },
+          "id": 8,
+          "options": {
+            "displayMode": "basic",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": true
+            },
+            "showUnfilled": true,
+            "valueMode": "color"
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"remoteHost\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"remoteHostCounts\")\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "目的地址总览",
+          "transparent": true,
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "fieldMinMax": false,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 16,
+            "w": 6,
+            "x": 8,
+            "y": 3
+          },
+          "id": 6,
+          "options": {
+            "displayMode": "basic",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "/^_value$/",
+              "values": true
+            },
+            "showUnfilled": true,
+            "valueMode": "color"
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"sourceAddress\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"sourceAddressCounts\")\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "客户端IP访问情况",
+          "transparent": true,
+          "type": "bargauge"
         }
       ],
-      "title": "访问地址情况",
-      "transparent": true,
-      "type": "bargauge"
+      "title": "细节信息",
+      "type": "row"
     },
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "cr1JeQNIk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 16,
-        "w": 6,
-        "x": 10,
-        "y": 23
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
       },
-      "id": 6,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "/^_value$/",
-          "values": true
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
+      "id": 12,
+      "panels": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "cr1JeQNIk"
           },
-          "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"sourceAddress\")\r\n  |> duplicate(column: \"_value\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count()\r\n  |> group()\r\n  |> sort(columns: [\"_value\"], desc: true)\r\n  |> yield(name: \"sourceAddressCounts\")\r\n",
-          "refId": "A"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 8,
+            "x": 0,
+            "y": 4
+          },
+          "id": 13,
+          "options": {
+            "displayMode": "basic",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "",
+              "values": true
+            },
+            "showUnfilled": true,
+            "valueMode": "color"
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "query": "sourceAddressRecords = from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"recent\" and r[\"_field\"] == \"sourceAddress\" and r[\"_value\"] == \"${sourceAddressVar}\")\r\n  |> keep(columns: [\"_time\",\"_value\",\"_field\"])\r\n\r\nremoteHostRecords = from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"recent\" and r[\"_field\"] == \"remoteHost\")\r\n  |> keep(columns: [\"_time\",\"_value\",\"_field\"])\r\n\r\n//join(tables: {sourceAddress: sourceAddressRecords, remoteHost: remoteHostRecords}, on: [\"_time\"])\r\n//  |> filter(fn: (r) => r[\"_field_remoteHost\"] == \"remoteHost\")\r\n\r\nremoteHostCounts = join(tables: {sourceAddress: sourceAddressRecords, remoteHost: remoteHostRecords}, on: [\"_time\"])\r\n  |> filter(fn: (r) => r[\"_field_remoteHost\"] == \"remoteHost\")\r\n  |> duplicate(column: \"_value_remoteHost\", as: \"duplicate_value\")\r\n  |> group(columns: [\"duplicate_value\"])\r\n  |> count(column: \"_value_remoteHost\")\r\n  |> group()\r\n  |> sort(columns: [\"_value_remoteHost\"], desc: true)\r\n  |> yield(name: \"remoteHostCounts\")\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "目的地址（Var）",
+          "transparent": true,
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "cr1JeQNIk"
+          },
+          "description": "",
+          "gridPos": {
+            "h": 19,
+            "w": 8,
+            "x": 8,
+            "y": 4
+          },
+          "id": 14,
+          "options": {
+            "dedupStrategy": "none",
+            "enableLogDetails": true,
+            "prettifyLogMessage": false,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "cr1JeQNIk"
+              },
+              "query": "// 获取 policyName 为 \"DIRECT\" 的记录\r\ndirectPolicies = from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\" and r._value == \"${policyNameVar}\")\r\n  // 选择合适的共有属性，例如 tags 或其他字段\r\n  |> keep(columns: [\"_time\", \"_value\", \"id\"])\r\n\r\n// 获取 remoteHost 的记录\r\nremoteHosts = from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"remoteHost\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"id\"])\r\n\r\n// 结合这两个数据集\r\njoinedData = join(\r\n  tables: {direct: directPolicies, remote: remoteHosts},\r\n  on: [\"id\"]\r\n)\r\njoinedData |> yield(name: \"joinedData\")\r\n",
+              "refId": "A"
+            }
+          ],
+          "title": "日志记录（Var）",
+          "type": "logs"
         }
       ],
-      "title": "客户端IP访问情况",
-      "transparent": true,
-      "type": "bargauge"
+      "title": "变量数据",
+      "type": "row"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "192.168.1.67",
+          "value": "192.168.1.67"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cr1JeQNIk"
+        },
+        "definition": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"sourceAddress\")\r\n  |> distinct(column: \"_value\")",
+        "description": "来源地址",
+        "hide": 0,
+        "includeAll": false,
+        "label": "sourceAddressVar",
+        "multi": false,
+        "name": "sourceAddressVar",
+        "options": [],
+        "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"sourceAddress\")\r\n  |> distinct(column: \"_value\")",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "REJECT-DROP",
+          "value": "REJECT-DROP"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cr1JeQNIk"
+        },
+        "definition": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\")\r\n  |> distinct(column: \"_value\")",
+        "description": "规则名称",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "policyNameVar",
+        "options": [],
+        "query": "from(bucket: \"surge\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"recent\" and r._field == \"policyName\")\r\n  |> distinct(column: \"_value\")",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-15m",
@@ -677,6 +883,6 @@
   "timezone": "Asia/Shanghai",
   "title": "Surge recent",
   "uid": "a2074dbe-7173-456d-94e3-df32d2f7813f",
-  "version": 19,
+  "version": 23,
   "weekStart": ""
 }
